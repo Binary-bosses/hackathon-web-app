@@ -9,7 +9,7 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Current Hackathon
             </div>
-            <p class="text-gray-800">Ends in 2 days</p>
+            <p class="text-gray-800">Ends in {{days}} Days</p>
             <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
             <!--<div class="row no-gutters align-items-center">
                 <div class="col-auto">
@@ -40,7 +40,7 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
               &#123;code&#125; Hackathon 2020 </div>
-            <p class="text-gray-800"><strong>7</strong></p>
+            <p class="text-gray-800"><strong>{{allHackathons}}</strong></p>
             <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">
@@ -59,8 +59,8 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-              Upcoming Idea Submitted</div>
-            <p class="text-gray-800"><strong>10</strong></p>
+              Current Idea Submitted</div>
+            <p class="text-gray-800"><strong>{{currentIdeas}}</strong></p>
             <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">
@@ -81,7 +81,7 @@
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
               Previous Hackathon Winner</div>
-            <p class="text-gray-800">Binary Bosses 3</p>
+            <p class="text-gray-800">{{prevWinningTeam}}</p>
             <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">

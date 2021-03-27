@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-upcoming-hackathons',
@@ -8,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class UpcomingHackathonsComponent implements OnInit {
 
   constructor() { }
-
+   @Input()
+   cdDays = null;
+    @Input()
+   cdHours = 0;
+    @Input()
+   cdMins = 0;
+    @Input()
+   cdSecs = 0;
   ngOnInit(): void {
   }
 

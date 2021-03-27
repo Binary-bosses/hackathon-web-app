@@ -13,8 +13,8 @@
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
       </div>
-    <app-cards></app-cards>
-    <app-upcoming-hackathons></app-upcoming-hackathons>
+    <app-cards days="{{days}}" allHackathons={{allHackathons.length}} currentIdeas={{currentIdeas}} prevWinningTeam={{prevWinningTeam.name}}></app-cards>
+    <app-upcoming-hackathons cdSecs = "{{cdSecs}}" cdMins = "{{cdMins}}" cdHours = "{{cdHours}}" cdDays = "{{cdDays}}"></app-upcoming-hackathons>
     <app-hackathon-deets></app-hackathon-deets>
 
   </div>

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Hackathon } from '../hackathon';
+import { Team } from '../team';
+import { Subscription, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-cards',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
-  constructor() { }
+    @Input()
+    customTitle: string = "";
 
-  ngOnInit(): void {
-  }
+   isLoadingResults = true;
+   @Input()
+   allHackathons = "";
+   @Input()
+   days = "";
+   @Input()
+   prevWinningTeam = "";
+   @Input()
+   currentIdeas = "";
+
+   ngOnInit(): void {
+   }
 
 }
