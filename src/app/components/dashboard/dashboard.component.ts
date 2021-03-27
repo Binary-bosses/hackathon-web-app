@@ -11,7 +11,9 @@ import { Subscription, Observable, of , interval} from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
    isLoadingResults = true;
+   isUpcomingLoading = true;
    allHackathons: Hackathon[] = [];
+   upcomingHackathons: Hackathon[] = [];
    prevHackathon = new Hackathon();
    currentHackathon = new Hackathon();
    upcomingHackathon = new Hackathon();
@@ -19,14 +21,16 @@ export class DashboardComponent implements OnInit {
    currentTimestamp = 0;
    currentIdeas = 0;
    currentTeams: Team[] = [];
+   currentTeamNames: string[] = [];
+   currentTeamIdeas: string[] = [];
    prevWinner = "";
    days = 0;
    prevWinningTeam: Team = new Team();
    gotPrev = false;
-   cdDays = 0;
-   cdHours = 0;
-   cdMins = 0;
-   cdSecs = 0;
+   cdDays = Number("");
+   cdHours = Number("");
+   cdMins = Number("");
+   cdSecs = Number("");
 
     private subscription = new Subscription();
 
@@ -57,7 +61,7 @@ export class DashboardComponent implements OnInit {
         .subscribe((res: any) => {
           //this.data = res;
           this.currentHackathon = res.data[0];
-          console.log(this.currentHackathon.name);
+          console.log(this.currentHackathon);
           console.log("here currentHackathon");
           this.isLoadingResults = false;
                       this.api.getHackathonDetails(this.currentHackathon.name)
@@ -69,9 +73,11 @@ export class DashboardComponent implements OnInit {
                       this.currentTeams = this.currentHackathon.teams;
                       console.log(this.currentTeams);
                       let targetId = this.currentTeams.map(a => a.idea)
+                      this.currentTeamIdeas = targetId;
                       targetId = targetId.filter(function (el) {
                         return el != "";
                       });
+                      this.currentTeamNames = this.currentTeams.map(a => a.name)
                       this.currentIdeas = targetId.length;
                       console.log(targetId);
                       this.days = (this.currentTimestamp*1000 - currentTimeInMilliseconds) / (1000 * 60 * 60 * 24) | 0
@@ -110,7 +116,6 @@ export class DashboardComponent implements OnInit {
                       }, err => {
                         console.log(err);
                         console.log("error");
-                        this.isLoadingResults = false;
                       });
         }, err => {
           console.log(err);
@@ -122,15 +127,16 @@ export class DashboardComponent implements OnInit {
         this.api.getUpcomingHackathons()
         .subscribe((res: any) => {
           //this.data = res;
+          this.upcomingHackathons = res.data;
+          console.log(this.upcomingHackathons);
           this.upcomingHackathon = res.data[0];
-          console.log(this.upcomingHackathon.name);
           console.log("here upcomingHackathon");
+          this.isUpcomingLoading = false;
           this.isLoadingResults = false;
                       this.api.getHackathonDetails(this.upcomingHackathon.name)
                       .subscribe((res: any) => {
                       this.upcomingHackathon = res.data;
                       this.upcomingHackathonDate = this.upcomingHackathon.startTime * 1000 ;
-                      console.log(this.upcomingHackathonDate);
 
                           let second = 1000,
                                   minute = second * 60,
@@ -142,17 +148,16 @@ export class DashboardComponent implements OnInit {
                                   let now = new Date().getTime();
                                    let   distance = countDown - now;
 
-                                  this.cdDays = Math.floor(distance / (day));
-                                  this.cdHours = Math.floor((distance % (day)) / (hour)),
-                                  this.cdMins = Math.floor((distance % (hour)) / (minute)),
-                                  this.cdSecs = Math.floor((distance % (minute)) / second);
+                                  this.cdDays = Number(Math.floor(distance / (day)));
+                                  this.cdHours = Number(Math.floor((distance % (day)) / (hour))),
+                                  this.cdMins = Number(Math.floor((distance % (hour)) / (minute))),
+                                  this.cdSecs = Number(Math.floor((distance % (minute)) / second));
                                   console.log('days');
                                   console.log(this.cdDays);
                                   console.log(this.cdSecs);
 
-                        this.isLoadingResults = false;
-                               this.subscription = interval(1000)
-                                   .subscribe(x => { this.getTimeDifference(); });
+
+                               this.subscription = interval(1000).subscribe(x => { this.getTimeDifference(); });
                       }, err => {
                         console.log(err);
                         console.log("error");
@@ -169,11 +174,11 @@ export class DashboardComponent implements OnInit {
 
     private getTimeDifference () {
         this.timeDifference = this.upcomingHackathonDate - new  Date().getTime();
-                this.cdSecs = Math.floor((this.timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute);
-                this.cdMins = Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute);
-                this.cdHours = Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay);
-                this.cdDays = Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay));
-          console.log(this.cdSecs + 'secs');
+                this.cdSecs = Number(Math.floor((this.timeDifference) / (this.milliSecondsInASecond) % this.SecondsInAMinute));
+                this.cdMins = Number(Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour) % this.SecondsInAMinute));
+                this.cdHours = Number(Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute) % this.hoursInADay));
+                this.cdDays = Number(Math.floor((this.timeDifference) / (this.milliSecondsInASecond * this.minutesInAnHour * this.SecondsInAMinute * this.hoursInADay)));
+
     }
 
 

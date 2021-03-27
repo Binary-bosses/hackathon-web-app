@@ -78,7 +78,7 @@ export class ApiService {
       }
 
     getTeamDetails(name: string): Observable<Hackathon> {
-      const url = `${apiUrl}/team?name=${name}`;
+      const url = `${apiUrl}/hackathon/team?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`fetched ${name} details`)),
         catchError(this.handleError<Hackathon>(`getTeamDetails name=${name}`))
