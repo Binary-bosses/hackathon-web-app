@@ -11,6 +11,7 @@ import { CreateHackComponent } from './components/create-hack/create-hack.compon
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { HackPageComponent } from './components/hack-page/hack-page.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NavContentComponent } from './components/nav-content/nav-content.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,11 @@ const routes: Routes = [
                       component: RegisterComponent,
                       data: { title: 'Register' }
                     },
+                                        {
+                                          path: 'hackathons/:id',
+                                          component: NavContentComponent,
+                                          data: { title: 'List Hackathons' }
+                                        },
     { path: '',
       redirectTo: '/dashboard',
       pathMatch: 'full'

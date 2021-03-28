@@ -57,6 +57,7 @@
 
                     <input type="text" class="form-control" id="exampleLastName" formControlName = "startTime"
                            placeholder=" Start Time ( {{current_date | date: 'M/d/yy h:mm'}} )">
+
                   </div>
                   <div class="col-sm-6">
                     <input type="text" class="form-control"
@@ -86,6 +87,13 @@
                 <div class="alert alert-danger form-group row" *ngIf="status == 'error'" role="alert">
                   Failed to Create {{data.name}} Hackathon
                 </div>
+
+                <div class="alert alert-danger form-group row" *ngIf="status == 'dateError'" role="alert">
+                  Failed to Create {{data.name}} Hackathon<br>
+                  Dates Should be formmated as month, day, year using military time<br>
+                  1/27/22 13:05 is January 27 2022 at 1:05 pm
+                </div>
+
 
 
 

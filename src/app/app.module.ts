@@ -21,6 +21,7 @@ import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HackPageComponent } from './components/hack-page/hack-page.component';
 import { RegisterComponent } from './components/register/register.component';
+import { NavContentComponent } from './components/nav-content/nav-content.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { RegisterComponent } from './components/register/register.component';
     CreateTeamComponent,
     HackPageComponent,
     RegisterComponent,
+    NavContentComponent,
   ],
   imports: [
     BrowserModule,

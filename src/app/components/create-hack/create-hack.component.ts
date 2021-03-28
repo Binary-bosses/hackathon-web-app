@@ -15,7 +15,7 @@ import { Subscription, Observable, of , interval} from 'rxjs';
 export class CreateHackComponent implements OnInit {
       data: Hackathon = new Hackathon();
       submitted = false;
-      current_date = new Date('2000-01-02')
+      current_date = new Date();
        status = '';
 
       form = new FormGroup({
@@ -73,23 +73,30 @@ export class CreateHackComponent implements OnInit {
     console.log(this.data.startTime);
     let dateObject = new Date(this.data.startTime);
     let dateObjectEnd = new Date(this.data.endTime);
+    console.log('dateonj')
     console.log(dateObject);
     this.data.startTime = dateObject.getTime() / 1000;
     this.data.endTime = dateObjectEnd.getTime() / 1000;
+
+    if( !Number.isFinite(this.data.endTime) || !Number.isFinite(this.data.startTime)){
+    this.status = 'dateError';
+    }else{
+                this.api.addHackathon(this.data)
+                .subscribe((res: any) => {
+                console.log(res);
+                this.status = res.status
+                  console.log(res.data);
+                  console.log("here");
+                  this.form.reset();
+                }, err => {
+                  console.log(err);
+                  this.status = 'error';
+                  console.log("error");
+                });
+    }
     console.log(this.data);
 
-            this.api.addHackathon(this.data)
-            .subscribe((res: any) => {
-            console.log(res);
-            this.status = res.status
-              console.log(res.data);
-              console.log("here");
-              this.form.reset();
-            }, err => {
-              console.log(err);
-              this.status = 'error';
-              console.log("error");
-            });
+
 
   }
       onReset() {
