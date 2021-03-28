@@ -23,6 +23,8 @@ export class CardsComponent implements OnInit {
    prevWinningTeam = "";
    @Input()
    currentIdeas = "";
+      @Input()
+      prevHack = "";
 
    ngOnInit(): void {
    }

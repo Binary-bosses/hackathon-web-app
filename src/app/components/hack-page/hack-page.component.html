@@ -1,0 +1,98 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">{{currentHackathon.name}} Details</h1>
+  <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+           class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+</div>
+
+
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Content Column -->
+  <div class="col-lg-12 marBot20">
+
+    <!-- Project Card Example -->
+    <div class="card shadow">
+
+
+      <div class="card-body">
+
+        <img src="./assets/img/hackathon-big-pic1.png" class="img-fluid marBot20">
+
+        <div class="row text-center">
+          <div class="col-sm-3">
+            <p class="lasthackDate"><i class="fas fa-trophy"></i> Winner:<br>
+              <span>{{currentHackathon.winner}}</span>  </p>
+          </div>
+          <div class="col-sm-3">
+            <p class="lasthackDate"><i class="fas fa-hourglass-start"></i> Starts On:<br>
+              <span>{{currentHackathon.startTime * 1000 | date:'MMM d, y, h:mm a'}} </span>  </p>
+          </div>
+          <div class="col-sm-3">
+            <p class="lasthackDate"><i class="fas fa-hourglass-end"></i> Ends On:<br>
+              <span>{{currentHackathon.endTime * 1000 | date:'MMM d, y, h:mm a'}} </span>  </p>
+          </div>
+          <div class="col-sm-3">
+            <p class="lasthackDate"><i class="fa fa-users"></i> Total Participated Teams:<br>
+              <span>{{currentHackathon.teams.length}}</span>  </p>
+          </div>
+
+        </div>
+        <div class="contentPrevHack">
+          <h2 class="text-center">{{currentHackathon.winner}} Project Details</h2>
+          <p class="otherProj"><a href="#">Click to see all other projects <i class="fa fa-chevron-right" style="font-size: 11px;"></i></a></p>
+          <h5>Theme</h5>
+          <p>Workflow Analysis Metrics</p>
+          <img src="./assets/img/idea-pic.png" class="img-fluid marBot20">
+          <h5>Overview</h5>
+          <p>Great organizations manage their workflows efficiently. When the core operations of an organization are clearly defined and run with care, the organization runs smoothly and can focus on bigger problems than storing data and fetching reports.</p>
+
+          <p>The visibility of the work that comes with workflow management tends to lead to awareness of how to improve these workflows. Business  process improvement is a natural part of workflow management.</p>
+
+          <p>The real problem today is a lack of efficient systems to support within and across team collaborations. Sigma-Thon 2.0 is back with another series of Hackathon to solution for everyday business problems.</p>
+
+          <p>We invite all developers globally to register and engineer data models & architectures that identify a workflow pattern, recommend actions, track issues, analyze trends, and derive actionable insights using BI reports.</p>
+
+          <h5>Project Details</h5>
+
+          <p>Workflow collaboration between teams is crucial in every organization. Every team works on different projects that are interrelated, thereby connecting multiple teams to a single product roadmap.There are multiple workflow tools like Jira, Trello,  Zoho, etc. Multiple reports are available at individual team levels that can be analysed for project-level and department-level analytics. </p>
+
+          <p><strong>Task:</strong></p>
+          <ul>
+            <li>[Minimum] : Analyse user behaviour data [time spent on each task, type of task done, spillovers, etc.] to: Recommend users for upcoming tasks, given the nature and priority of tasks</li>
+            <li>[Intermediate] : Build a Business intelligence reporting (BI-report) that derives actionable insights from workflow reports at project level, team level and subsequent hierarchical levels. Reports can be about work utilization, delivery efficiency, etc.</li>
+            <li>[Bonus] : Propose and design a scalable data architecture to store huge volumes of data </li>
+          </ul>
+
+          <p><strong>Resources:</strong></p>
+          <ul>
+            <li>What is a workflow?</li>
+            <li>How to approach a workflow analysis report?</li>
+            <li>Sample workflow analysis report</li>
+            <li>What Is Behavioral Data and Behavioral Analytics?</li>
+            <li>Sample dataset</li>
+            <li>Going Beyond The Board: A Whole New Trello Is Here</li>
+          </ul>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+</div>
+
+
+
+
+

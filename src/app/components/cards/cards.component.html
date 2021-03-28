@@ -82,7 +82,7 @@
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
               Previous Hackathon Winner</div>
             <p class="text-gray-800">{{prevWinningTeam}}</p>
-            <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
+            <a [routerLink]="['/hack-page', prevHack]" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">
             <i class="fas fa-trophy fa-2x text-gray-300"></i>

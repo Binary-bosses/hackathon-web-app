@@ -1,7 +1,18 @@
 <div id="wrapper">
   <app-navbar class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" ></app-navbar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
 
-  <app-dashboard></app-dashboard>
+    <!-- Main Content -->
+    <div id="content">
+      <app-topbar></app-topbar>
+      <div class="container-fluid">
 
+  <router-outlet></router-outlet>
 
+      </div>
+
+</div>
+    <app-footer></app-footer>
+  </div>
 </div>

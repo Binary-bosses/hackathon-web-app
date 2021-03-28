@@ -12,13 +12,14 @@ export class UpcomingHackathonsComponent implements OnInit {
 
   constructor(private api: ApiService) { }
    @Input()
-   cdDays = 0;
+   //cdDays = 0;
+   cdDays: string | number = 0;
     @Input()
-   cdHours = 0;
+   cdHours : string | number = 0;
     @Input()
-   cdMins = 0;
+   cdMins : string | number = 0;
     @Input()
-   cdSecs = 0;
+   cdSecs: string | number = 0;
    upcomingHackathons: Hackathon[] = [];
 
 

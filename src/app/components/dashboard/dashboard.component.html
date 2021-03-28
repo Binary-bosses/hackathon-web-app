@@ -1,11 +1,4 @@
-<!-- Content Wrapper -->
-<div id="content-wrapper" class="d-flex flex-column">
 
-  <!-- Main Content -->
-  <div id="content">
-
-    <app-topbar></app-topbar>
-    <div class="container-fluid">
 
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -13,11 +6,7 @@
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
       </div>
-    <app-cards days={{days}} allHackathons={{allHackathons.length}} currentIdeas={{currentIdeas}} prevWinningTeam={{prevWinningTeam.name}}></app-cards>
-      <!-- <app-upcoming-hackathons cdSecs = {{cdSecs}} cdMins = {{cdMins}} cdHours = {{cdHours}} cdDays = {{cdDays}}></app-upcoming-hackathons> -->
+    <app-cards days={{days}} allHackathons={{allHackathons.length}} currentIdeas={{currentIdeas}} prevWinningTeam={{prevWinningTeam.name}} prevHack={{prevHackathon.name}}></app-cards>
+      <app-upcoming-hackathons cdSecs = {{cdSecs}} cdMins = {{cdMins}} cdHours = {{cdHours}} cdDays = {{cdDays}}></app-upcoming-hackathons>
     <app-hackathon-deets currentTeamIdeas = {{currentTeamIdeas}} currentTeamNames = {{currentTeamNames}}></app-hackathon-deets>
 
-  </div>
-  <app-footer></app-footer>
-</div>
-</div>

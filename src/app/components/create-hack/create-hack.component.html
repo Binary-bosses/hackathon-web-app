@@ -1,0 +1,121 @@
+
+
+      <!-- Page Heading -->
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create a Hackathon</h1>
+        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+      </div>                    <!-- Content Row -->
+      <div class="row">
+
+        <!-- Content Column -->
+        <div class="col-lg-12 marBot20">
+
+          <!-- Project Card Example -->
+          <div class="card shadow">
+
+
+            <div class="card-body">
+
+              <form class="createHack" [formGroup]="form">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control" id="exampleFirstName"
+                           placeholder="Hackathon Name" formControlName = "name">
+                    <div *ngIf="name && name.pending">Validating...</div>
+                    <div *ngIf="name && name.invalid" class="alert alert-danger alter-ego-errors">
+                      <div *ngIf="name && name.errors?.uniqueAlterEgo">
+                        Hackathon Name Not Available.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="custom-file mb-3 mb-sm-0">
+                      <input type="file" class="form-control custom-file-input" id="customFile" name="filename">
+                      <label class="custom-file-label" for="customFile">Choose a Hackathon image</label>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="exampleInputEmail"
+                         placeholder="Problem Statement Details" formControlName = "description">
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control" formControlName = "hackathonPass"
+                           id="exampleInputPassword" placeholder="Password">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control" formControlName = "confirmPass"
+                           id="exampleRepeatPassword" placeholder="Confirm Password">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+
+
+                    <input type="text" class="form-control" id="exampleLastName" formControlName = "startTime"
+                           placeholder=" Start Time ( {{current_date | date: 'M/d/yy h:mm'}} )">
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control"
+                           id="exampleInputendtime" placeholder="End Time" formControlName = "endTime">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div>
+
+                    <div formArrayName="teams">
+                      <button class="btn btn-primary btn-block"
+                              type="button" (click)="onAddHobby()" >Add a Team</button>
+
+                      <div class="form-group"
+                           *ngFor="let hobbyControl of getControls(); let i = index">
+                        <input type="text" class="form-control" placeholder="Team Name"
+                               [formControlName]="i">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                  <div class="alert alert-success form-group row" *ngIf="status == '200'" role="alert">
+                    Successfully Created <a [routerLink]="['/hack-page', data.name]"> {{data.name}} </a> Hackathon
+                  </div>
+                <div class="alert alert-danger form-group row" *ngIf="status == 'error'" role="alert">
+                  Failed to Create {{data.name}} Hackathon
+                </div>
+
+
+
+                <div class="form-group row">
+                  <div class="col-sm-8"></div>
+                  <div class="col-sm-2">
+                    <button class="btn btn-secondary btn-block" (click)="onReset()">Reset Hackathon</button>
+                  </div>
+                  <div class="col-sm-2">
+
+                    <button class="btn btn-primary btn-block" type="submit" (click)="onSubmit()">Create Hackathon</button>
+                  </div>
+
+                </div>
+
+
+
+              </form>
+
+            </div>
+
+          </div>
+
+
+
+
+
+        </div>
+
+
+      </div>
+
+

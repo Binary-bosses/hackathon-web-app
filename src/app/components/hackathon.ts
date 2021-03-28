@@ -6,4 +6,5 @@ export class Hackathon {
   teams=[];
   endTime=0;
   winner="";
+  hackathonPass="";
 }

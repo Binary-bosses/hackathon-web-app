@@ -10,11 +10,16 @@ import { CardsComponent } from './components/cards/cards.component';
 import { UpcomingHackathonsComponent } from './components/upcoming-hackathons/upcoming-hackathons.component';
 import { HackathonDeetsComponent } from './components/hackathon-deets/hackathon-deets.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CreateHackComponent } from './components/create-hack/create-hack.component';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMyDatePickerModule } from 'angular-mydatepicker';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { HackPageComponent } from './components/hack-page/hack-page.component';
 
 
 @NgModule({
@@ -26,7 +31,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CardsComponent,
     UpcomingHackathonsComponent,
     HackathonDeetsComponent,
-    FooterComponent
+    FooterComponent,
+    CreateHackComponent,
+    CreateTeamComponent,
+    HackPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularMyDatePickerModule,
+    NgMultiSelectDropDownModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

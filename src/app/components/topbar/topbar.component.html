@@ -52,8 +52,38 @@
     <li class="nav-item dropdown no-arrow mx-1">
 
 
-      <a class="btn button-green" type="button" id="create" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Create a Hackathon
-        <!--<i class="fa fa-angle-down"></i>--> </a>
+      <a class="dropdown-toggle btn button-green" href="#" id="create" role="button"
+         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create
+        <i class="fa fa-angle-down"></i>
+      </a>
+
+      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+           aria-labelledby="alertsDropdown">
+
+        <a class="dropdown-item d-flex align-items-center" [routerLink]="['/createHack']">
+          <div class="mr-3">
+            <div class="icon-circle bg-primary">
+
+              <i class="fas fa-project-diagram text-white"></i>
+            </div>
+          </div>
+          <div>
+
+            <p class="marTop10"><strong>Create Hackathon</strong></p>
+          </div>
+        </a>
+        <a class="dropdown-item d-flex align-items-center" [routerLink]="['/createTeam']">
+          <div class="mr-3">
+            <div class="icon-circle bg-primary">
+              <i class="fa fa-users text-white"></i>
+            </div>
+          </div>
+          <div >
+            <p class="marTop10"><strong>Create Team </strong></p>
+          </div>
+        </a>
+
+      </div>
 
 
     </li>
@@ -127,7 +157,7 @@
         </h6>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="img/undraw_profile_1.svg"
+            <img class="rounded-circle" src="./assets/img/undraw_profile_1.svg"
                  alt="">
             <div class="status-indicator bg-success"></div>
           </div>
@@ -139,7 +169,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="img/undraw_profile_2.svg"
+            <img class="rounded-circle" src="./assets/img/undraw_profile_2.svg"
                  alt="">
             <div class="status-indicator"></div>
           </div>
@@ -151,7 +181,7 @@
         </a>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="dropdown-list-image mr-3">
-            <img class="rounded-circle" src="img/undraw_profile_3.svg"
+            <img class="rounded-circle" src="./assets/img/undraw_profile_3.svg"
                  alt="">
             <div class="status-indicator bg-warning"></div>
           </div>

@@ -1,6 +1,6 @@
 export class Team {
   name="";
   idea="";
-  members=[];
+  members: any[] = [];
 }
 

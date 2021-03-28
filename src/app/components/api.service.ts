@@ -3,10 +3,16 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Hackathon } from './hackathon';
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import { Team } from './team';
 const apiUrl = 'http://api.code-hackathon.com/api/v1';
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json',
+   'Access-Control-Allow-Origin': '*',
+"Access-Control-Allow-Methods": "POST, OPTIONS",
+"Access-Control-Allow-Headers": "Content-Type"
+   })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +83,7 @@ export class ApiService {
       );
       }
 
+
     getTeamDetails(name: string): Observable<Hackathon> {
       const url = `${apiUrl}/hackathon/team?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
@@ -87,7 +94,7 @@ export class ApiService {
     }
 
     validateHackathonName(name: string): Observable<Hackathon> {
-      const url = `${apiUrl}/hackathonName?name=${name}`;
+      const url = `api/v1/validate/hackathonName?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`validated ${name} `)),
         catchError(this.handleError<Hackathon>(`validateHackathonName name=${name}`))
@@ -96,7 +103,7 @@ export class ApiService {
     }
 
     validateTeamName(name: string): Observable<Hackathon> {
-      const url = `${apiUrl}/teamName?name=${name}`;
+      const url = `api/v1/validate/teamName?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`validated ${name} `)),
         catchError(this.handleError<Hackathon>(`validateTeamName name=${name}`))
@@ -105,7 +112,7 @@ export class ApiService {
     }
 
     validateAdmin(name: string, pass: string): Observable<Hackathon> {
-      const url = `${apiUrl}/admin?pass=${pass}&name=${name}`;
+      const url = `${apiUrl}/validate/admin?pass=${pass}&name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`validated ${name} ${pass} `)),
         catchError(this.handleError<Hackathon>(`validateAdmin name=${name} pass=${pass}`))
@@ -114,9 +121,16 @@ export class ApiService {
     }
 
   addHackathon(hackathons: Hackathon): Observable<Hackathon> {
-    return this.http.post<Hackathon>(apiUrl, hackathons, httpOptions).pipe(
-      tap((c: Hackathon) => console.log(`added hackathon w/ id=${c.name}`)),
-      catchError(this.handleError<Hackathon>('addHackathon'))
+  const url = `api/v1/hackathon`;
+    return this.http.post<Hackathon>(url, hackathons).pipe(
+      tap((c: Hackathon) => console.log(`added hackathon w/ id=${c.name}`))
+    );
+  }
+
+  addTeam(teams: Team): Observable<Team> {
+  const url = `api/v1/team`;
+    return this.http.post<Team>(url, teams).pipe(
+      tap((c: Team) => console.log(`added team w/ id=${c.name}`))
     );
   }
 

@@ -1,0 +1,12 @@
+{
+  "/api/*": {
+    "target": "http://api.code-hackathon.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "auth_user": "jazwhite"
+    }
+  }
+
+}
