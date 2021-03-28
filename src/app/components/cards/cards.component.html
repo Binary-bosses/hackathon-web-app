@@ -41,7 +41,7 @@
             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
               &#123;code&#125; Hackathon 2020 </div>
             <p class="text-gray-800"><strong>{{allHackathons}}</strong></p>
-            <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
+            <a [routerLink]="['/hackathons', 'all']"class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">
             <i class="fas fa-calendar fa-2x text-gray-300"></i>
