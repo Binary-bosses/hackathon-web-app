@@ -7,10 +7,10 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Current Hackathon
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{{currentHack}}
             </div>
-            <p class="text-gray-800">Ends in {{days}} Days</p>
-            <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
+            <p class="text-gray-800"> Ends in {{days}} Days</p>
+            <a [routerLink]="['/hack-page', currentHack]" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
             <!--<div class="row no-gutters align-items-center">
                 <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
@@ -59,9 +59,8 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-              Current Idea Submitted</div>
+              Current Teams Participating</div>
             <p class="text-gray-800"><strong>{{currentIdeas}}</strong></p>
-            <a href="#" class="viewMore">View Details <i class="fa fa-angle-right"></i></a>
           </div>
           <div class="col-auto">
             <i class="fas fa-lightbulb fa-2x text-gray-300"></i>

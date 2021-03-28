@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
    currentTimestamp = 0;
    currentIdeas = 0;
    currentTeams: Team[] = [];
+   allTeams =0;
    currentTeamNames: string[] = [];
    currentTeamIdeas: string[] = [];
    prevWinner = "";
@@ -57,6 +58,18 @@ export class DashboardComponent implements OnInit {
           this.isLoadingResults = false;
         });
 
+        this.api.getTeams()
+        .subscribe((res: any) => {
+          this.allTeams = res.data.length;
+          console.log(this.allTeams);
+          console.log("all teams");
+          this.isLoadingResults = false;
+        }, err => {
+          console.log(err);
+          console.log("error");
+          this.isLoadingResults = false;
+        });
+
         this.api.getOngoingHackathons()
         .subscribe((res: any) => {
           //this.data = res;
@@ -78,7 +91,7 @@ export class DashboardComponent implements OnInit {
                         return el != "";
                       });
                       this.currentTeamNames = this.currentTeams.map(a => a.name)
-                      this.currentIdeas = targetId.length;
+                      this.currentIdeas = this.currentTeamNames.length;
                       console.log(targetId);
                       this.days = (this.currentTimestamp*1000 - currentTimeInMilliseconds) / (1000 * 60 * 60 * 24) | 0
 
@@ -105,11 +118,10 @@ export class DashboardComponent implements OnInit {
                       this.api.getHackathonDetails(this.prevHackathon.name)
                       .subscribe((res: any) => {
                       this.prevHackathon = res.data
-                      /*temp fix until api is fixed
-                      this.prevHackathon = res.data
                       this.prevWinner = this.prevHackathon.winner
-                      */
-                        this.prevWinningTeam = this.prevHackathon.teams[0];
+
+
+                        //this.prevWinningTeam = this.prevHackathon.teams[0];
                         console.log(this.prevWinningTeam.name);
                         console.log("here deatails");
                         this.isLoadingResults = false;

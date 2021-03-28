@@ -25,6 +25,8 @@ export class CardsComponent implements OnInit {
    currentIdeas = "";
       @Input()
       prevHack = "";
+      @Input()
+      currentHack = "";
 
    ngOnInit(): void {
    }

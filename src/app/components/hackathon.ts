@@ -3,7 +3,7 @@ export class Hackathon {
   description="";
   problemStatement="";
   startTime=0;
-  teams=[];
+  teams: any[] = [];
   endTime=0;
   winner="";
   hackathonPass="";

@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators,FormArray } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Hackathon } from '../hackathon';
-import { UniqueAlterEgoValidator } from '../teamName.directive';
+import { UniqueAlterEgoValidator } from '../validHackName.directive';
 import { ApiService } from '../api.service';
 import { Team } from '../team';
 import { Subscription, Observable, of , interval} from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-team',
-  templateUrl: './create-team.component.html',
-  styleUrls: ['./create-team.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class CreateTeamComponent implements OnInit {
+export class RegisterComponent implements OnInit {
        status = '';
+       hackName = this.route.snapshot.params.id;
+       allTeams: Team[] = [];
+               closeDropdownSelection=false;
        submitted = false;
                disabled = false;
                ShowFilter = false;
@@ -21,41 +25,43 @@ export class CreateTeamComponent implements OnInit {
                cities: Array<any> = [];
                selectedItems: Array<any> = [];
                dropdownSettings: any = {};
-      data: Team = new Team();
+      data: Hackathon = new Hackathon();
+      aTeam: Team = new Team();
       form = new FormGroup({
-        name: new FormControl('', {asyncValidators: [this.alterEgoValidator.validate.bind(this.alterEgoValidator)],
-                               updateOn: 'blur'})
+        name: new FormControl(this.route.snapshot.params.id, {asyncValidators: [this.alterEgoValidator.validate.bind(this.alterEgoValidator)],
+                               updateOn: 'blur'}),
+        description: new FormControl('')
 
       });
 
 
   ngOnInit(): void {
-              this.cities = [
-                  { item_id: 'Jazzmine', item_text: 'jazwhite' },
-                  { item_id: 'Jayjit', item_text: 'jabasu' },
-                  { item_id: 'Anil k', item_text: 'akairamk' },
-                  { item_id: 'Philip', item_text: 'phwhitin' },
-                  { item_id: 'Deepa', item_text: 'debharti' },
-                  { item_id: 'Sandya', item_text: 'sandsiva' },
-                  { item_id: 'Virat', item_text: 'visardan' }
-              ];
+          this.api.getTeams()
+          .subscribe((res: any) => {
+            this.allTeams = res.data;
+            console.log(this.allTeams);
+            console.log("all teams");
+            this.cities = this.allTeams.map(a => a.name);
+          }, err => {
+            console.log(err);
+            console.log("error");
+          });
+
 this.selectedItems = [];
             this.dropdownSettings = {
-                singleSelection: false,
-                idField: 'item_text',
-                textField: 'item_id',
+                singleSelection: true,
                 selectAllText: 'Select All',
                 unSelectAllText: 'UnSelect All',
-                itemsShowLimit: 6,
-                allowSearchFilter: this.ShowFilter
+                allowSearchFilter: true,
+                closeDropDownOnSelection: this.closeDropdownSelection
 
             };
 
                         this.form = new FormGroup({
-                             name: new FormControl(null, {
+                             name: new FormControl(this.route.snapshot.params.id, {
                               asyncValidators: [this.alterEgoValidator.validate.bind(this.alterEgoValidator)],
-                              updateOn: 'blur'
-              })
+                              updateOn: 'blur'}),
+                              description: new FormControl('')
 
                            });
 
@@ -92,10 +98,16 @@ this.selectedItems = [];
                    console.log(this.form.value);
                    console.log(this.data);
                    console.log('selected items');
-                   this.data.members = this.selectedItems.map(a => a.item_text);
+                    let team = {name: this.selectedItems[0],
+                    idea: this.data.description}
+                    let teams = [team];
+
+                   this.data.teams = teams;
+                   this.data.description = "";
                    console.log(this.data);
 
-                           this.api.addTeam(this.data)
+
+                           this.api.register(this.data)
                            .subscribe((res: any) => {
                            console.log(res);
                            this.status = res.status
@@ -109,6 +121,7 @@ this.selectedItems = [];
                              this.status = 'error';
                              console.log("error");
                            });
+
 
  }
 
@@ -141,7 +154,11 @@ this.selectedItems = [];
             }
         }
 
+        toggleCloseDropdownSelection() {
+            this.closeDropdownSelection = !this.closeDropdownSelection;
+            this.dropdownSettings = Object.assign({}, this.dropdownSettings,{closeDropDownOnSelection: this.closeDropdownSelection});
+        }
 
-
-  constructor(private alterEgoValidator: UniqueAlterEgoValidator, private api: ApiService, private fb: FormBuilder) { }
+  constructor(private alterEgoValidator: UniqueAlterEgoValidator, private route: ActivatedRoute,private api: ApiService, private fb: FormBuilder) { }
 }
+

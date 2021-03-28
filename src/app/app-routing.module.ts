@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CreateHackComponent } from './components/create-hack/create-hack.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { HackPageComponent } from './components/hack-page/hack-page.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
             component: HackPageComponent,
             data: { title: 'Hackathon Details' }
           },
+                    {
+                      path: 'register/:id',
+                      component: RegisterComponent,
+                      data: { title: 'Register' }
+                    },
     { path: '',
       redirectTo: '/dashboard',
       pathMatch: 'full'

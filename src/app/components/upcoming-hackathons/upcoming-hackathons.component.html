@@ -57,14 +57,6 @@
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-               aria-labelledby="dropdownMenuLink">
-            <div class="dropdown-header">Dropdown Header:</div>
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
         </div>
       </div>
       <!-- Card Body -->
@@ -73,7 +65,8 @@
 
           <div class="card-deck">
 
-            <div class="card" *ngFor="let hack of upcomingHackathons">
+            <div class="card" *ngFor="let hack of upcomingHackathons; let index = index">
+
               <img class="card-img-top" src="./assets/img/upcoming-pic1.png" alt="Card image cap">
               <div class="registrationsTool" title="So far Registered 10 people">
 
@@ -85,11 +78,14 @@
               </div>
               <div class="card-footer text-center">
                 <!--<small class="text-muted">Last updated 3 mins ago</small>-->
-                <button class="btn btn-primary registerBtn">Register</button>
+                <button class="btn btn-primary registerBtn" [routerLink]="['/register', hack.name]">Register</button>
               </div>
+
             </div>
 
           </div>
+
+
 
         </div>
       </div>

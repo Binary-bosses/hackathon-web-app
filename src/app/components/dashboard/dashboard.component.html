@@ -6,7 +6,7 @@
         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                  class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
       </div>
-    <app-cards days={{days}} allHackathons={{allHackathons.length}} currentIdeas={{currentIdeas}} prevWinningTeam={{prevWinningTeam.name}} prevHack={{prevHackathon.name}}></app-cards>
+    <app-cards days={{days}} allHackathons={{allHackathons.length}} currentHack = {{currentHackathon.name}} currentIdeas={{allTeams}} prevWinningTeam={{prevWinner}} prevHack={{prevHackathon.name}}></app-cards>
       <app-upcoming-hackathons cdSecs = {{cdSecs}} cdMins = {{cdMins}} cdHours = {{cdHours}} cdDays = {{cdDays}}></app-upcoming-hackathons>
     <app-hackathon-deets currentTeamIdeas = {{currentTeamIdeas}} currentTeamNames = {{currentTeamNames}}></app-hackathon-deets>
 

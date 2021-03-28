@@ -34,14 +34,22 @@ export class ApiService {
 
 
   getHackathons(): Observable<Hackathon> {
-    const url = `${apiUrl}/hackathons`;
+    const url = `api/v1/hackathons`;
     return this.http.get<Hackathon>(url).pipe(
       tap(_ => console.log(`fetched hackathons`)),
       catchError(this.handleError<Hackathon>(`getHackathons`))
     );
   }
+
+  getTeams(): Observable<Team> {
+    const url = `api/v1/teams`;
+    return this.http.get<Team>(url).pipe(
+      tap(_ => console.log(`fetched teams`)),
+      catchError(this.handleError<Team>(`getTeams`))
+    );
+  }
   getHackathons2(): Observable<any> {
-  const url = `${apiUrl}/hackathons`;
+  const url = `api/v1/hackathons`;
   var config = {headers:  {
           'Access-Control-Allow-Origin': apiUrl
       }
@@ -52,7 +60,7 @@ export class ApiService {
   }
 
   getUpcomingHackathons(): Observable<Hackathon> {
-    const url = `${apiUrl}/hackathons?status=upcoming`;
+    const url = `api/v1/hackathons?status=upcoming`;
     return this.http.get<Hackathon>(url).pipe(
       tap(_ => console.log(`fetched upcoming hackathons`)),
       catchError(this.handleError<Hackathon>(`getUpcomingHackathons`))
@@ -60,14 +68,14 @@ export class ApiService {
   }
 
     getCompletedHackathons(): Observable<Hackathon> {
-      const url = `${apiUrl}/hackathons?status=completed`;
+      const url = `api/v1/hackathons?status=completed`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`fetched completed hackathons`)),
         catchError(this.handleError<Hackathon>(`getCompletedHackathons`))
       );
 }
     getOngoingHackathons(): Observable<Hackathon> {
-      const url = `${apiUrl}/hackathons?status=ongoing`;
+      const url = `api/v1/hackathons?status=ongoing`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`fetched ongoing hackathons`)),
         catchError(this.handleError<Hackathon>(`getOngoingHackathons`))
@@ -76,7 +84,7 @@ export class ApiService {
     }
 
     getHackathonDetails(name: string): Observable<Hackathon> {
-      const url = `${apiUrl}/hackathon?name=${name}`;
+      const url = `api/v1/hackathon?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`fetched ${name} details`)),
         catchError(this.handleError<Hackathon>(`getHackathonDetails name=${name}`))
@@ -85,7 +93,7 @@ export class ApiService {
 
 
     getTeamDetails(name: string): Observable<Hackathon> {
-      const url = `${apiUrl}/hackathon/team?name=${name}`;
+      const url = `api/v1/hackathon/team?name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`fetched ${name} details`)),
         catchError(this.handleError<Hackathon>(`getTeamDetails name=${name}`))
@@ -112,7 +120,7 @@ export class ApiService {
     }
 
     validateAdmin(name: string, pass: string): Observable<Hackathon> {
-      const url = `${apiUrl}/validate/admin?pass=${pass}&name=${name}`;
+      const url = `api/v1/validate/admin?pass=${pass}&name=${name}`;
       return this.http.get<Hackathon>(url).pipe(
         tap(_ => console.log(`validated ${name} ${pass} `)),
         catchError(this.handleError<Hackathon>(`validateAdmin name=${name} pass=${pass}`))
@@ -133,6 +141,12 @@ export class ApiService {
       tap((c: Team) => console.log(`added team w/ id=${c.name}`))
     );
   }
+    register(hackathons: Hackathon): Observable<Hackathon> {
+    const url = `api/v1/hackathon/team`;
+      return this.http.post<Hackathon>(url, hackathons).pipe(
+        tap((c: Hackathon) => console.log(`registed team w/ id=${c.name}`))
+      );
+    }
 
   updateHackathon(hackathons: Hackathon): Observable<Hackathon> {
     return this.http.post<Hackathon>(apiUrl, hackathons, httpOptions).pipe(

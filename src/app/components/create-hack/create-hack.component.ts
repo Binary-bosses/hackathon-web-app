@@ -84,6 +84,7 @@ export class CreateHackComponent implements OnInit {
             this.status = res.status
               console.log(res.data);
               console.log("here");
+              this.form.reset();
             }, err => {
               console.log(err);
               this.status = 'error';

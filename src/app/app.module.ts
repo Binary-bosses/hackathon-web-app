@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMyDatePickerModule } from 'angular-mydatepicker';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HackPageComponent } from './components/hack-page/hack-page.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HackPageComponent } from './components/hack-page/hack-page.component';
     CreateHackComponent,
     CreateTeamComponent,
     HackPageComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
