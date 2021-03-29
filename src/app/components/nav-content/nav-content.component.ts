@@ -31,14 +31,15 @@ export class NavContentComponent implements OnInit {
 this.loadData(this.time);
 
 this.router.events.subscribe((event: Event) => {
+                                this.time = this.route.snapshot.params.id;
+                                console.log(this.time);
+                                this.loadData(this.time);
             if (event instanceof NavigationStart) {
 
             }
 
             if (event instanceof NavigationEnd) {
-                                this.time = this.route.snapshot.params.id;
-                                console.log(this.time);
-                                this.loadData(this.time);
+
             }
 
             if (event instanceof NavigationError) {
