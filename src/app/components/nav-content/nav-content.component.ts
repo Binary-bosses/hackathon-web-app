@@ -28,7 +28,16 @@ export class NavContentComponent implements OnInit {
   constructor(private api: ApiService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-this.loadData(this.time);
+              this.api.getUpcomingHackathons()
+              .subscribe((res: any) => {
+                this.hackathons = res.data;
+                console.log(this.hackathons);
+                console.log("all upcoming");
+                this.time = 'Upcoming';
+              }, err => {
+                console.log(err);
+                console.log("error");
+              });
 
 this.router.events.subscribe((event: Event) => {
 
