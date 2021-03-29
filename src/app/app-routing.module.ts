@@ -13,6 +13,7 @@ import { HackPageComponent } from './components/hack-page/hack-page.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NavContentComponent } from './components/nav-content/nav-content.component';
 
+
 const routes: Routes = [
   {
     path: 'dashboard',
