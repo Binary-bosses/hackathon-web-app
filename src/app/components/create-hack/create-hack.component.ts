@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, AbstractControl, Validators,FormArray } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Hackathon } from '../hackathon';
-import { UniqueAlterEgoValidator } from '../hackName.directive';
+import { UniqueAlterEgoValidator } from '../hackname.directive';
 import { ApiService } from '../api.service';
 import { Team } from '../team';
 import { Subscription, Observable, of , interval} from 'rxjs';
